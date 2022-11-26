@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { finalize } from 'rxjs';
 import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
@@ -17,9 +18,13 @@ export class RegistrationUserComponent {
     password: ''
   };
   error: string = '';
+  loading: boolean = false;
 
   registration(): void {
-    this.authService.authRegistration(this.user).subscribe(
+    this.loading = true;
+    this.authService.authRegistration(this.user).pipe(
+      finalize(() => this.loading = false)
+      ).subscribe(
       () => {
         this.router.navigate(["/login"])
       },

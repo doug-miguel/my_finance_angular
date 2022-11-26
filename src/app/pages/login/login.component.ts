@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { finalize } from 'rxjs';
 import { AuthService } from 'src/app/services/auth/auth.service';
-import { UserModel } from 'src/app/types/Users';
 
 @Component({
   selector: 'app-login',
@@ -14,19 +14,23 @@ export class LoginComponent {
     email: '',
     password: ''
   }
-  error!: string
+  error!: string;
+  loading: boolean = false;
 
   login() {
-    this.AuthService.authAuthenticator(this.user).subscribe(
+    this.loading = true;
+    this.AuthService.authAuthenticator(this.user).pipe(
+      finalize(() => this.loading = false)
+    ).subscribe(
       resultado => {
-        window.sessionStorage.setItem('token', resultado.token)
         this.AuthService.userAuth(resultado.userModel);
+        window.sessionStorage.setItem('token', resultado.token)
         this.router.navigate(["/"]);
       },
       erro => {
         this.error = erro.error.message
         console.log(erro);
-      },
+      }
     )
   }
 }
