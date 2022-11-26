@@ -1,0 +1,48 @@
+.containerLogin {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  background: rgb(255, 255, 255);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 1) 50%,
+    rgba(128, 253, 255, 1) 50%,
+    rgba(0, 251, 255, 1) 100%
+  );
+}
+
+.cardContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 30%;
+  background-color: #f8f8f8;
+}
+
+.titleLogin {
+  margin: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .svg {
+    margin-right: 10px;
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+}
+
+.error {
+  text-align: center;
+  color: #ff0000;
+}
+
+.cardRegister {
+  margin: 15px 10px;
+  color: rgb(42, 0, 250);
+}

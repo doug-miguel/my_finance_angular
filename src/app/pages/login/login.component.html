@@ -1,0 +1,39 @@
+<div class="containerLogin">
+  <mat-card class="cardContainer">
+    <div class="titleLogin">
+      <app-logoSvg class="svg"></app-logoSvg>
+      <mat-card-title>Login</mat-card-title>
+    </div>
+    <mat-card-content class="card">
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input
+          matInput
+          placeholder="Email"
+          type="email"
+          [(ngModel)]="user.email"
+          name="email"
+        />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Senha</mat-label>
+        <input
+          matInput
+          placeholder="Senha"
+          type="password"
+          [(ngModel)]="user.password"
+          name="password"
+        />
+      </mat-form-field>
+      <p class="error">{{ error }}</p>
+      <button
+        (click)="login()"
+        mat-raised-button
+        color="primary"
+      >
+        Acessar
+      </button>
+    </mat-card-content>
+    <a class="cardRegister" routerLink="/registration">Cadastrar-se</a>
+  </mat-card>
+</div>
