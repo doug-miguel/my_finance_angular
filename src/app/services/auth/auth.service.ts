@@ -12,12 +12,12 @@ import { environment } from 'src/environments/environment';
 export class AuthService {
   constructor(private httpClient: HttpClient) { }
   baseUrl: string = `${environment.API}`;
-  authorization!: boolean;
   userData: UserModel = {
     id: '',
     name: '',
     email: '',
   }
+  authRouter: boolean = false;
 
   authAuthenticator(user: IUserLogin): Observable<IUserData> {
     return this.httpClient.post<IUserData>(`${this.baseUrl}/login`, user);
@@ -31,5 +31,9 @@ export class AuthService {
 
   userAuth(user: UserModel) {
     return this.userData = user;
+  }
+
+  authorization(auth: boolean): void {
+    this.authRouter = auth;
   }
 }

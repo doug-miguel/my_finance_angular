@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { finalize } from 'rxjs';
 import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
@@ -19,17 +18,21 @@ export class LoginComponent {
 
   login() {
     this.loading = true;
-    this.AuthService.authAuthenticator(this.user).pipe(
-      finalize(() => this.loading = false)
-    ).subscribe(
+    this.AuthService.authAuthenticator(this.user).subscribe(
       resultado => {
-        this.AuthService.userAuth(resultado.userModel);
-        window.sessionStorage.setItem('token', resultado.token)
-        this.router.navigate(["/"]);
+        if(resultado.token) {
+          window.sessionStorage.setItem("token", resultado.token)
+          this.AuthService.userAuth(resultado.userModel);
+          this.AuthService.authorization(true);
+          this.router.navigate(["/"]);
+        }
       },
       erro => {
         this.error = erro.error.message
-        console.log(erro);
+        this.loading = false;
+      },
+      () => {
+        this.loading = false;
       }
     )
   }
