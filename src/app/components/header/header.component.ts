@@ -8,9 +8,12 @@ import { UserModel } from 'src/app/types/Users';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  constructor(private AuthService: AuthService) {}
   ngOnInit() {
-    this.user = this.AuthService.userData
+    const userModalString = window.sessionStorage.getItem("userModel")
+    const userModal = JSON.parse(userModalString as any);
+    this.user = userModal;
+    this.name = userModal.name.substr(0, 1)
   }
   user!: UserModel;
+  name!: String
 }

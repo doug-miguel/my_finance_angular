@@ -22,6 +22,7 @@ export class LoginComponent {
       resultado => {
         if(resultado.token) {
           window.sessionStorage.setItem("token", resultado.token)
+          window.sessionStorage.setItem("userModel", JSON.stringify(resultado.userModel))
           this.AuthService.userAuth(resultado.userModel);
           this.AuthService.authorization(true);
           this.router.navigate(["/"]);

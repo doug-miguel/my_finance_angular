@@ -1,0 +1,19 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+
+  .containerButton {
+    display: flex;
+    border: 1px solid;
+    border-radius: 50px;
+    padding: 8px 5px;
+    background-color: aqua;
+    cursor: pointer;
+
+    button {
+      border: none;
+      background-color: aqua;
+      cursor: pointer;
+    }
+  }
+}
